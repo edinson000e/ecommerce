@@ -1,3 +1,4 @@
+import { Product } from "../../commons/types/products";
 import { AnyObject } from "../../commons/types/types";
 
 export interface CartTotal {
@@ -15,7 +16,7 @@ export interface CartActions {
 }
 
 export interface CartState {
-  items: Array<any>;
+  items: Array<Product>;
   lastUpdate?: Date;
   totals: CartTotal;
 }
@@ -30,11 +31,11 @@ export interface RemoveItem {
 }
 
 export interface AddItem {
-  item: any;
+  item: Product;
 }
 
 export interface Dispatch {
-  addItem: (item: any) => void;
+  addItem: (item: Product) => void;
   removeItem: (id: number | string) => void;
   editQuantity: ({ id, newQuantity }: EditQuantity) => void;
   updateCartTotals: () => void;

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
 import BasicLayout from "../components/BasicLayout";
+import { useCartContext } from "../context";
 import { getAllGame } from "./api/allProducts";
 export default function Home() {
   const [games, setGames] = useState([]);
+
+  const { dispatch } = useCartContext();
+
   useEffect(() => {
     (async () => {
       const response = await getAllGame();
@@ -42,7 +44,10 @@ export default function Home() {
                       </h2>
                       <p className="mt-1">${game.price}</p>
                     </div>
-                    <button className="flextext-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded w-full ">
+                    <button
+                      className="flextext-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded w-full "
+                      onClick={() => dispatch.addItem(game)}
+                    >
                       Agregar
                     </button>
                   </div>
