@@ -1,5 +1,14 @@
-import { AddItem, EditQuantity, CartState,   } from './types';
-import { ADD_ITEM, REMOVE_ITEM, EDIT_QUANTITY, EDIT_ITEM, UPDATE_CART_TOTALS, UPDATE_STATE } from './const';
+import { AddItem, EditQuantity, CartState, EditQuantityAddSubtract } from "./types";
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  EDIT_QUANTITY,
+  EDIT_ITEM,
+  UPDATE_CART_TOTALS,
+  UPDATE_STATE,
+  EDIT_QUANTITY_ADD,
+  EDIT_QUANTITY_SUBTRACT,
+} from "./const";
 
 export const addItem = (item: any) => ({
   type: ADD_ITEM,
@@ -13,6 +22,16 @@ export const removeItem = (id: number | string) => ({
 
 export const editQuantity = (value: EditQuantity) => ({
   type: EDIT_QUANTITY,
+  payload: value,
+});
+
+export const editQuantityAdd = (value: EditQuantityAddSubtract) => ({
+  type: EDIT_QUANTITY_ADD,
+  payload: value,
+});
+
+export const editQuantitySubtract = (value: EditQuantityAddSubtract) => ({
+  type: EDIT_QUANTITY_SUBTRACT,
   payload: value,
 });
 

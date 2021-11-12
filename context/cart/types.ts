@@ -20,13 +20,15 @@ export interface CartItem {
   product: Product;
 }
 
-
 export interface CartState {
   items: Array<CartItem>;
   lastUpdate?: Date;
   totals: CartTotal;
 }
 
+export interface EditQuantityAddSubtract {
+  id: number | string;
+}
 export interface EditQuantity {
   id: number | string;
   newQuantity: number;
@@ -44,6 +46,8 @@ export interface Dispatch {
   addItem: (item: CartItem) => void;
   removeItem: (id: number | string) => void;
   editQuantity: ({ id, newQuantity }: EditQuantity) => void;
+  editQuantityAdd: ({ id }: EditQuantityAddSubtract) => void;
+  editQuantitySubtract: ({ id }: EditQuantityAddSubtract) => void;
   updateCartTotals: () => void;
   updateState: (state: CartState) => void;
 }

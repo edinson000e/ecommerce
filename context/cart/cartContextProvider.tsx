@@ -3,6 +3,8 @@ import { AnyObject } from "../../commons/types/types";
 import {
   addItem,
   editQuantity,
+  editQuantityAdd,
+  editQuantitySubtract,
   removeItem,
   updateCartTotals,
   updateState,
@@ -33,6 +35,8 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       removeItem: (id) => dispatcher(removeItem(id)),
       editQuantity: ({ id, newQuantity }) =>
         dispatcher(editQuantity({ id, newQuantity })),
+      editQuantityAdd: ({ id }) => dispatcher(editQuantityAdd({ id })),
+      editQuantitySubtract: ({ id }) => dispatcher(editQuantitySubtract({ id })),
       updateCartTotals: () => dispatcher(updateCartTotals()),
       updateState: (state: CartState) => dispatcher(updateState(state)),
     }),

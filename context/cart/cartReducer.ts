@@ -2,6 +2,8 @@ import {
   ADD_ITEM,
   EDIT_ITEM,
   EDIT_QUANTITY,
+  EDIT_QUANTITY_ADD,
+  EDIT_QUANTITY_SUBTRACT,
   REMOVE_ITEM,
   UPDATE_CART_TOTALS,
   UPDATE_STATE,
@@ -33,9 +35,37 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
       return {
         ...state,
       };
-    case EDIT_QUANTITY:
+    case EDIT_QUANTITY_ADD:
+      const copyItemsAdd = [...state.items];
+      const idItemEditAdd = copyItemsAdd.findIndex(
+        (item) => item.product.id === action.payload?.id
+      );
+      copyItemsAdd[idItemEditAdd].quantity =
+        copyItemsAdd[idItemEditAdd].quantity + 1;
       return {
         ...state,
+        items: copyItemsAdd,
+      };
+    case EDIT_QUANTITY_SUBTRACT:
+      const copyItemsSubtract = [...state.items];
+      const idItemEditSubtract = copyItemsSubtract.findIndex(
+        (item) => item.product.id === action.payload?.id
+      );
+      copyItemsSubtract[idItemEditSubtract].quantity =
+        copyItemsAdd[idItemEditSubtract].quantity - 1;
+      return {
+        ...state,
+        items: copyItemsSubtract,
+      };
+    case EDIT_QUANTITY:
+      const copyItems = [...state.items];
+      const idItemEdit = copyItems.findIndex(
+        (item) => item.product.id === action.payload?.id
+      );
+      copyItems[idItemEdit].quantity = copyItems[idItemEdit].quantity + 1;
+      return {
+        ...state,
+        items: copyItems,
       };
     case EDIT_ITEM:
       return {
