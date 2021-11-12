@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Product } from "../commons/types/products";
 import BasicLayout from "../components/BasicLayout";
 import { useCartContext } from "../context";
-import { getAllGame } from "./api/allProducts";
+import { getAllProducts } from "./api/allProducts";
 export default function Home() {
-  const [games, setGames] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const { cartState, dispatch } = useCartContext();
 
@@ -17,9 +17,9 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const response = await getAllGame();
+      const response = await getAllProducts();
       if (response.data) {
-        setGames(response.data);
+        setProducts(response.data);
       }
       console.log("response", response);
     })();
@@ -29,18 +29,38 @@ export default function Home() {
     console.log("cartstart", cartState);
   }, [cartState]);
 
+  const addProduct = useCallback(
+    (product: Product) => {
+      dispatch.addItem({ product, quantity: 1 });
+      dispatch.updateCartTotals();
+    },
+    [dispatch]
+  );
+
+  const increment = useCallback(
+    (id: number) => {
+      dispatch.editQuantityAdd({ id });
+      dispatch.updateCartTotals();
+    },
+    [dispatch]
+  );
+  const decrement = useCallback(
+    (id: number) => {
+      dispatch.editQuantitySubtract({ id });
+      dispatch.updateCartTotals();
+    },
+    [dispatch]
+  );
+
   return (
     <BasicLayout>
       <div className="container mx-auto px-2">
         <section className="text-gray-600 body-font">
-          <div className="xl:w-1/3 md:w-1/2 p-4">
-            <div className=""></div>
-          </div>
-          <div className="container px-5 py-24 mx-auto ">
+          <div className="container px-5 py-3 mx-auto ">
             <div className="flex flex-wrap -m-4 ">
-              {!!games.length &&
-                games.map((game: Product) => {
-                  const { id, price, name, cover } = game;
+              {!!products.length &&
+                products.map((product: Product) => {
+                  const { id, price, name, cover } = product;
 
                   const dataProductInCart = validateProductInCart(id);
                   console.log("validateProductInCart", dataProductInCart);
@@ -65,9 +85,7 @@ export default function Home() {
                       {!dataProductInCart ? (
                         <button
                           className="flextext-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded w-full "
-                          onClick={() =>
-                            dispatch.addItem({ product: game, quantity: 1 })
-                          }
+                          onClick={() => addProduct(product)}
                         >
                           Agregar
                         </button>
@@ -77,9 +95,7 @@ export default function Home() {
                             <button
                               data-action="decrement"
                               className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
-                              onClick={() =>
-                                dispatch.editQuantitySubtract({ id })
-                              }
+                              onClick={() => decrement(id)}
                             >
                               <span className="m-auto text-2xl font-thin">
                                 −
@@ -93,7 +109,7 @@ export default function Home() {
                             <button
                               data-action="increment"
                               className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
-                              onClick={() => dispatch.editQuantityAdd({ id })}
+                              onClick={() => increment(id)}
                             >
                               <span className="m-auto text-2xl font-thin">
                                 +

@@ -2,11 +2,7 @@ import { Product } from "../../commons/types/products";
 import { AnyObject } from "../../commons/types/types";
 
 export interface CartTotal {
-  subTotal: number;
-  shippingPrice: number;
   totalPrice: number;
-  totalOnePay: number;
-  installments: number;
   quantity: number;
 }
 
@@ -22,7 +18,6 @@ export interface CartItem {
 
 export interface CartState {
   items: Array<CartItem>;
-  lastUpdate?: Date;
   totals: CartTotal;
 }
 

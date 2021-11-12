@@ -9,6 +9,7 @@ import {
   UPDATE_STATE,
 } from "./const";
 import { CartActions, CartState } from "./types";
+import { updateCartTotals } from "./utils";
 
 export const initialTotals = {
   subTotal: 0,
@@ -82,6 +83,7 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
     case UPDATE_CART_TOTALS:
       return {
         ...state,
+        totals: updateCartTotals(state.items),
       };
     case UPDATE_STATE:
       return {

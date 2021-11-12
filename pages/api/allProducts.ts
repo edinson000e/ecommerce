@@ -1,4 +1,4 @@
-export async function getAllGame() {
+export async function getAllProducts() {
   const res = await fetch(`https://products-api-meru.vercel.app/api/products`);
   const data = await res.json();
 
