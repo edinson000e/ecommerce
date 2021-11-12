@@ -40,8 +40,10 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
       const idItemEditAdd = state.items.findIndex(
         (item) => item.product.id === action.payload?.id
       );
-      const quantityAdd = state.items[idItemEditAdd].quantity + 1;
-      copyItemsAdd[idItemEditAdd].quantity = quantityAdd;
+      copyItemsAdd[idItemEditAdd] = {
+        ...copyItemsAdd[idItemEditAdd],
+        quantity: copyItemsAdd[idItemEditAdd].quantity + 1,
+      };
       return {
         ...state,
         items: [...copyItemsAdd],
@@ -51,10 +53,12 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
       const idItemEditSubtract = copyItemsSubtract.findIndex(
         (item) => item.product.id === action.payload?.id
       );
-      const quantityOldDesc = state.items[idItemEditSubtract].quantity;
-      const quantityDesc = quantityOldDesc - 1;
-      if (quantityDesc > 0)
-        copyItemsSubtract[idItemEditSubtract].quantity = quantityDesc;
+
+      if (state.items[idItemEditSubtract].quantity - 1 > 0)
+        copyItemsSubtract[idItemEditSubtract] = {
+          ...copyItemsSubtract[idItemEditSubtract],
+          quantity: copyItemsSubtract[idItemEditSubtract].quantity - 1,
+        };
       else copyItemsSubtract.splice(idItemEditSubtract, 1);
 
       return {

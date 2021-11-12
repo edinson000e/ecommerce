@@ -28,6 +28,7 @@ export default function Home() {
   useEffect(() => {
     console.log("cartstart", cartState);
   }, [cartState]);
+
   return (
     <BasicLayout>
       <div className="container mx-auto px-2">
