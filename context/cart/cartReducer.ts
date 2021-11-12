@@ -24,7 +24,7 @@ export const cartInitialState: CartState = {
 
 export const cartReducer = (state = cartInitialState, action: CartActions) => {
   switch (action.type) {
-    case ADD_ITEM: 
+    case ADD_ITEM:
       return {
         ...state,
         items: [...state.items, action.payload?.item],

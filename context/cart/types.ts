@@ -15,8 +15,14 @@ export interface CartActions {
   payload?: AnyObject;
 }
 
+export interface CartItem {
+  quantity: number;
+  product: Product;
+}
+
+
 export interface CartState {
-  items: Array<Product>;
+  items: Array<CartItem>;
   lastUpdate?: Date;
   totals: CartTotal;
 }
@@ -35,7 +41,7 @@ export interface AddItem {
 }
 
 export interface Dispatch {
-  addItem: (item: Product) => void;
+  addItem: (item: CartItem) => void;
   removeItem: (id: number | string) => void;
   editQuantity: ({ id, newQuantity }: EditQuantity) => void;
   updateCartTotals: () => void;
