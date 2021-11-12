@@ -76,6 +76,9 @@ export default function Home() {
                             <button
                               data-action="decrement"
                               className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                              onClick={() =>
+                                dispatch.editQuantitySubtract({ id })
+                              }
                             >
                               <span className="m-auto text-2xl font-thin">
                                 −
@@ -89,6 +92,7 @@ export default function Home() {
                             <button
                               data-action="increment"
                               className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
+                              onClick={() => dispatch.editQuantityAdd({ id })}
                             >
                               <span className="m-auto text-2xl font-thin">
                                 +
