@@ -11,10 +11,10 @@ export const ListProducts = () => {
         <div className="-my-8 divide-y-2 divide-gray-100 flex flex-wrap -m-4">
           {cartState.items.map((item) => (
             <div
-              className="py-5 flex flex-wrap md:flex-nowrap w-full"
+              className="py-5 flex flex-wrap lg:flex-nowrap w-full"
               key={item.product.id}
             >
-              <div className="md:flex-grow w-20 mx-2 m-auto">
+              <div className="lg:flex-grow lg:w-20 mx-2 m-auto sm:w-full  smd:w-2/5">
                 <Image
                   src={item.product.cover}
                   alt={item.product.name}
@@ -23,17 +23,17 @@ export const ListProducts = () => {
                   layout="responsive"
                 />
               </div>
-              <div className="md:flex-grow md:w-2/5 mx-2 m-auto">
-                <p className="text-sm font-medium text-gray-900 title-font mb-2">
+              <div className="smd:flex-grow lg:w-2/5 mx-2 m-auto sm:w-full smd:w-2/5">
+                <p className="text-sm font-medium text-gray-900 title-font mb-2 sm:m-auto">
                   {item.product.name}
                 </p>
               </div>
-              <div className="md:w-1/5 mx-2 m-auto">
+              <div className="lg:w-1/5 mx-2 m-auto sm:w-full smd:w-full smd:text-center ">
                 <p className="leading-relaxed text-2xl ">
                   ${item.product.price}
                 </p>
               </div>
-              <div className="md:w-1/6 mx-2 m-auto">
+              <div className="lg:w-1/6 mx-2 m-auto sm:w-3/4 smd:w-10/12 smd:m-auto sm:m-auto">
                 <AddDecrProduct
                   decrement={() => decrement(item.product.id)}
                   increment={() => increment(item.product.id)}
@@ -47,14 +47,15 @@ export const ListProducts = () => {
                   colorH="hover:bg-yellow-600"
                 />
               </div>
-              <div className="m-auto mx-6">
+              <div className="m-auto mx-6 sm:w-full sm:text-center sm:my-4 smd:w-full    smd:text-center  smd:my-4 md:my-auto md:w-2.5">
                 <button
                   data-action="delete"
                   onClick={() => deleteProduct(item.product.id)}
+                  className="smd:text-center"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="h-6 w-6 smd:text-center"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

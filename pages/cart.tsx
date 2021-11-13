@@ -22,10 +22,10 @@ export default function Cart() {
               <EmptyCart />
             ) : (
               <>
-                <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+                <div className="lg:w-3/5 md:w-3/5 md:pr-16 lg:pr-0 pr-0 smd:w-full">
                   <ListProducts />
                 </div>
-                <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8   md:ml-auto w-full h-4/5">
+                <div className="lg:w-2/6 md:w-2/5 bg-gray-100 rounded-lg p-8   md:ml-auto w-full h-4/5 smd:w-full">
                   <OrderSummary />
                 </div>
               </>

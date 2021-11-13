@@ -3,7 +3,7 @@ import { useCartContext } from "../../../context";
 
 export default function TopBar(props) {
   return (
-    <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <div className="container mx-auto flex flex-wrap p-5 justify-between flex-row items-center">
       <Logo></Logo>
       <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center"></nav>
       <CartMenu />
@@ -14,7 +14,7 @@ export default function TopBar(props) {
 function Logo() {
   return (
     <Link href="/">
-      <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 sm:flex-col sm:flex-column md:flex-row">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="164"
@@ -44,7 +44,7 @@ function CartMenu() {
   return (
     <div>
       <Link href="/cart">
-        <a>
+        <a className='m-auto'>
           <p
             className={`m-auto text-xl font-medium text-center text-yellow-500 ${
               quantity === 0 ? "opacity-0" : ""
