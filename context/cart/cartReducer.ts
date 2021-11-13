@@ -12,11 +12,7 @@ import { CartActions, CartState } from "./types";
 import { updateCartTotals } from "./utils";
 
 export const initialTotals = {
-  subTotal: 0,
-  shippingPrice: 0,
   totalPrice: 0,
-  totalOnePay: 0,
-  installments: 1,
   quantity: 0,
 };
 
@@ -33,8 +29,14 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
         items: [...state.items, action.payload?.item],
       };
     case REMOVE_ITEM:
+      console.log("action.payload?.id", action.payload?.id);
+      const copyItemsRemove = state.items.filter(
+        (item) => item.product.id !== action.payload?.id
+      );
+      console.log("copyItemsRemove", copyItemsRemove);
       return {
         ...state,
+        items: copyItemsRemove,
       };
     case EDIT_QUANTITY_ADD:
       const copyItemsAdd = [...state.items];

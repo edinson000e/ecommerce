@@ -35,5 +35,20 @@ export const useCart = () => {
     [dispatch]
   );
 
-  return { cartState, increment, addProduct, decrement, validateProductInCart };
+  const deleteProduct = useCallback(
+    (id: number) => {
+      dispatch.removeItem(id );
+      dispatch.updateCartTotals();
+    },
+    [dispatch]
+  );
+
+  return {
+    cartState,
+    increment,
+    addProduct,
+    decrement,
+    validateProductInCart,
+    deleteProduct,
+  };
 };
