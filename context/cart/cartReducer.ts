@@ -31,11 +31,9 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
         items: [...state.items, action.payload?.item],
       };
     case REMOVE_ITEM:
-      console.log("action.payload?.id", action.payload?.id);
       const copyItemsRemove = state.items.filter(
         (item) => item.product.id !== action.payload?.id
       );
-      console.log("copyItemsRemove", copyItemsRemove);
       return {
         ...state,
         items: copyItemsRemove,
