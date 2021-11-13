@@ -5,16 +5,24 @@ import { AddDecrProduct } from "../components/AddDecrProdutc/AddDecrProduct";
 import BasicLayout from "../components/BasicLayout";
 import { useCart } from "../hooks/useCart";
 import { getAllProducts } from "./api/allProducts";
+import Loading from "../components/Loading/Loading";
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const { increment, addProduct, decrement, validateProductInCart } = useCart();
+  const { increment, addProduct, decrement, validateProductInCart, cartState } =
+    useCart();
 
   useEffect(() => {
     (async () => {
-      const response = await getAllProducts();
-      if (response.data) {
-        setProducts(response.data);
+      try {
+        const response = await getAllProducts();
+        if (response.data) {
+          setProducts(response.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
       }
     })();
   }, []);
@@ -23,8 +31,11 @@ export default function Home() {
     <BasicLayout>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-3 mx-auto ">
+          <Loading loadingOn={loading || !cartState.init} />
           <div className="flex flex-wrap -m-4 ">
             {!!products.length &&
+              !loading &&
+              cartState.init  &&
               products.map((product: Product) => {
                 const { id, price, name, cover } = product;
                 const dataProductInCart = validateProductInCart(id);
