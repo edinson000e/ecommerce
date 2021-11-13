@@ -33,7 +33,7 @@ export default function Home() {
         <div className="container px-5 py-3 mx-auto ">
           <Loading loadingOn={loading || !cartState.init} />
           <div className="flex flex-wrap -m-4 ">
-            {!!products.length &&
+            {!!products?.length &&
               !loading &&
               cartState.init  &&
               products.map((product: Product) => {

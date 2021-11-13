@@ -72,7 +72,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
   const initials = useCallback(async () => {
     const ownerPersist = persistCart.get();
-    if (ownerPersist.length) {
+    if (ownerPersist?.length) {
       try {
         const response = await getAllProducts();
         const newCart = ownerPersist.reduce(
