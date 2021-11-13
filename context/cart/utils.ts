@@ -17,3 +17,14 @@ export const updateCartTotals = (cartItems: CartItem[]) => {
     totalPrice,
   };
 };
+
+export const persistentCart = () => {
+  const key = "cart";
+
+  return {
+    persist: (data: CartItem[]) =>
+      localStorage.setItem(key, JSON.stringify(data)),
+    get: (): CartItem[] => JSON.parse(localStorage.getItem(key)),
+    remove: () => localStorage.removeItem(key),
+  };
+};

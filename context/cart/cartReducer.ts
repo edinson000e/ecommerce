@@ -1,5 +1,6 @@
 import {
   ADD_ITEM,
+  CART_INIT,
   EDIT_ITEM,
   EDIT_QUANTITY,
   EDIT_QUANTITY_ADD,
@@ -19,6 +20,7 @@ export const initialTotals = {
 export const cartInitialState: CartState = {
   items: [],
   totals: initialTotals,
+  init: false,
 };
 
 export const cartReducer = (state = cartInitialState, action: CartActions) => {
@@ -90,6 +92,12 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
     case UPDATE_STATE:
       return {
         ...state,
+        ...action.payload,
+      };
+    case CART_INIT:
+      return {
+        ...state,
+        init: true,
       };
     default:
       return {

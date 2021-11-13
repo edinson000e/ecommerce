@@ -19,6 +19,7 @@ export interface CartItem {
 export interface CartState {
   items: Array<CartItem>;
   totals: CartTotal;
+  init: boolean;
 }
 
 export interface EditQuantityAddSubtract {

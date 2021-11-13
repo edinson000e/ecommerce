@@ -8,6 +8,7 @@ import {
   UPDATE_STATE,
   EDIT_QUANTITY_ADD,
   EDIT_QUANTITY_SUBTRACT,
+  CART_INIT,
 } from "./const";
 
 export const addItem = (item: any) => ({
@@ -47,4 +48,9 @@ export const updateCartTotals = () => ({
 export const updateState = (state: CartState) => ({
   type: UPDATE_STATE,
   payload: state,
+});
+
+
+export const cartInit = () => ({
+  type: CART_INIT,
 });

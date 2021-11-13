@@ -37,7 +37,7 @@ export const useCart = () => {
 
   const deleteProduct = useCallback(
     (id: number) => {
-      dispatch.removeItem(id );
+      dispatch.removeItem(id);
       dispatch.updateCartTotals();
     },
     [dispatch]
