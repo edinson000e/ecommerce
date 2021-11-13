@@ -6,7 +6,7 @@ export default function BasicLayout(props) {
   return (
     <div className="home">
       <Header />
-      <div className="container mx-auto px-4">{children}</div>
+      <div className="container mx-auto px-2">{children}</div>
     </div>
   );
 }
