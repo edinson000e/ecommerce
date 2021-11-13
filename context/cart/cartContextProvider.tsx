@@ -15,6 +15,7 @@ import {
   editQuantity,
   editQuantityAdd,
   editQuantitySubtract,
+  emptyCart,
   removeItem,
   updateCartTotals,
   updateState,
@@ -61,6 +62,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         dispatcher(updateCartTotals());
       },
       updateState: (state: CartState) => dispatcher(updateState(state)),
+      emptyCart:()=>{dispatcher(emptyCart());}
     }),
     [dispatcher]
   );

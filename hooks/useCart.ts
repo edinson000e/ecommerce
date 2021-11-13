@@ -43,6 +43,10 @@ export const useCart = () => {
     [dispatch]
   );
 
+  const emptyCart = useCallback(() => {
+    dispatch.emptyCart();
+  }, [dispatch]);
+
   return {
     cartState,
     increment,
@@ -50,5 +54,6 @@ export const useCart = () => {
     decrement,
     validateProductInCart,
     deleteProduct,
+    emptyCart,
   };
 };

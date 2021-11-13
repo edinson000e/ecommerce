@@ -46,4 +46,5 @@ export interface Dispatch {
   editQuantitySubtract: ({ id }: EditQuantityAddSubtract) => void;
   updateCartTotals: () => void;
   updateState: (state: CartState) => void;
+  emptyCart: () => void;
 }

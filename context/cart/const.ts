@@ -7,3 +7,4 @@ export const UPDATE_STATE = "UPDATE_STATE";
 export const EDIT_QUANTITY_ADD = "EDIT_QUANTITY_ADD";
 export const EDIT_QUANTITY_SUBTRACT = "EDIT_QUANTITY_SUBTRACT";
 export const CART_INIT = "CART_INIT";
+export const EMPTY_CART = "EMPTY_CART";

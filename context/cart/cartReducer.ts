@@ -5,6 +5,7 @@ import {
   EDIT_QUANTITY,
   EDIT_QUANTITY_ADD,
   EDIT_QUANTITY_SUBTRACT,
+  EMPTY_CART,
   REMOVE_ITEM,
   UPDATE_CART_TOTALS,
   UPDATE_STATE,
@@ -96,6 +97,12 @@ export const cartReducer = (state = cartInitialState, action: CartActions) => {
       return {
         ...state,
         init: true,
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        items: [],
+        totals: initialTotals,
       };
     default:
       return {

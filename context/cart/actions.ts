@@ -9,6 +9,7 @@ import {
   EDIT_QUANTITY_ADD,
   EDIT_QUANTITY_SUBTRACT,
   CART_INIT,
+  EMPTY_CART,
 } from "./const";
 
 export const addItem = (item: any) => ({
@@ -54,3 +55,7 @@ export const updateState = (state: CartState) => ({
 export const cartInit = () => ({
   type: CART_INIT,
 });
+
+export const emptyCart = () => ({
+  type: EMPTY_CART
+})
